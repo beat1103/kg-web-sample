@@ -1,0 +1,141 @@
+:root {
+    --table-header-bg: #ddd;
+    --text-color: #000;
+    --border-color: #666; /* 추가된 변수 */
+}
+
+[data-theme='dark'] {
+    --table-header-bg: rgba(255, 255, 255, 0.1);
+    --text-color: #fff;
+    --border-color: #000; /* 추가된 변수 */
+}
+
+/* 제목 스타일 */
+.markdown-content h1 {
+    font-size: 1.8rem; /* 2rem에서 축소 */
+    margin-bottom: 16px;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 12px;
+    color: inherit;
+}
+
+.markdown-content h2 {
+    font-size: 1.5rem; /* 1.8rem에서 축소 */
+    margin-top: 24px;
+    margin-bottom: 16px;
+    color: inherit;
+}
+
+.markdown-content h3 {
+    font-size: 1.25rem; /* 1.5rem에서 축소 */
+    margin-top: 20px;
+    margin-bottom: 12px;
+    color: inherit;
+}
+
+.markdown-content h4 {
+    font-size: 1.1rem; /* 1.2rem에서 축소 */
+    margin-top: 16px;
+    margin-bottom: 8px;
+    color: inherit;
+}
+
+.markdown-content h5 {
+    font-size: 0.9rem; /* 1rem에서 축소 */
+    margin-top: 12px;
+    margin-bottom: 6px;
+    color: inherit;
+}
+
+/* 텍스트 스타일 */
+.markdown-content p {
+    margin-bottom: 16px;
+}
+
+.markdown-content strong {
+    font-weight: bold;
+}
+
+.markdown-content em {
+    font-style: italic;
+    color: #555;
+}
+
+.markdown-content del {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* 리스트 스타일 */
+.markdown-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 16px;
+}
+
+.markdown-content ol {
+    list-style-type: decimal;
+    margin-left: 20px;
+    margin-bottom: 16px;
+}
+
+.markdown-content li {
+    margin-bottom: 8px;
+}
+
+/* 테이블 스타일 */
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.markdown-content table th,
+.markdown-content table td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: left;
+}
+
+.markdown-content table th {
+    background-color: var(--table-header-bg, rgba(255, 255, 255, 0.1));
+    color: var(--text-color, inherit);
+    font-weight: bold;
+}
+
+/* 링크 스타일 */
+.markdown-content a {
+    color: #1e88e5;
+    text-decoration: none;
+}
+
+.markdown-content a:hover {
+    text-decoration: underline;
+}
+
+/* 인용구 스타일 */
+.markdown-content blockquote {
+    border-left: 4px solid #555;
+    background-color: #f4f8fb;
+    margin: 16px 0;
+    padding: 8px 16px;
+    font-style: italic;
+    color: #555;
+}
+
+/* 수평선 스타일 */
+.markdown-content hr {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin: 16px 0;
+}
+
+/* 이미지 스타일 */
+.markdown-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 16px 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

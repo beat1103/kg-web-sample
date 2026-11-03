@@ -1,0 +1,362 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*html 리스트 페이지*/
+@layer components {
+  
+  /*header*/
+  .html_header {
+    @apply relative overflow-hidden w-full text-center p-[10px] bg-primary mb-[20px] ;
+  }
+
+  .html_header .header-tit {
+    @apply mb-[10px] font-bold text-white text-28;
+  }
+  .html_contents {
+    padding: 10px 10px 10px 10px;
+    width: 100%;
+    height: calc(100vh - 200px);
+    box-sizing: border-box;
+    overflow: auto;
+}
+  .gnb_lists_w{
+    @apply flex justify-center items-center border-t pt-[10px] border-white border-opacity-70;
+  }
+
+  .gnb_list{
+    @apply relative flex items-center pr-[15px];
+  }
+  .gnb_list:after{
+    @apply absolute right-0 block w-[1px] h-[12px] bg-white bg-opacity-80;
+  }
+
+  .gnb_list +  .gnb_list{
+    @apply ml-[15px];
+  }
+
+  .gnb_list .gnb_link{
+    @apply relative text-white opacity-70 text-14;
+  }
+
+  .gnb_list .gnb_link.active{
+    @apply opacity-100;
+  }
+
+  /*guide 영역*/
+  .sec{
+    @apply relative py-[16px] px-[20px];
+  }
+  .stg {
+    @apply text-15 font-bold;
+  }
+
+  /*진행율 그래프*/
+  .status_grap_w {
+    @apply w-full
+  }
+  .grap_w {
+    @apply relative  w-full h-[10px] mt-[10px] bg-gray-100
+  }
+  .stick {
+    @apply inline-block absolute left-0 top-0 h-[10px] bg-primary;
+  }
+
+
+  /*titlee*/
+  .tit_sub{
+    @apply my-3 font-bold text-[15px];
+  }
+  .status_w{
+    @apply absolute flex top-[16px] right-[40px] ; 
+  }
+  .status_w span + span{
+    @apply ml-[10px]; 
+  }
+
+  /*table*/
+  .html_list{
+    @apply border-b
+  }
+  .html_list .theader_tr{
+    @apply bg-gray-70;
+  }
+  .html_list .theader_tr th{
+    @apply text-center text-15;
+  }
+  .html_list .tbody_tr{
+    @apply  hover:bg-primary-50  border-solid;
+  }
+  .html_list .tbody_tr.on{
+    @apply  bg-primary-50;
+  }
+  .html_list .tbody_tr td{
+    @apply border-r text-15;  
+  }
+  .html_list .tbody_tr td span.txt, .html_list .tbody_tr td [class^="txt"] {
+    @apply text-15;
+  }
+  .html_list .tbody_tr.divide td{
+    @apply border-t-2 border-t-gray-900 text-15;
+  }
+  .html_list.common .tbody_tr td:nth-child(n+4){
+    @apply text-center
+  }
+  .html_list.page .tbody_tr td:nth-child(n+6){
+    @apply text-center
+  }
+  .html_list .tbody_tr td:last-child {
+    @apply border-r-0;
+  }
+
+  /** table txt**/
+  
+  /*기본 텍스트*/
+  .html_list .tbody_tr.cancle [class*='txt'],   .html_list .tbody_tr.cancle [class*='link'] {
+    @apply text-gray-200 text-15;
+  }
+  .html_list .tbody_tr [class*='txt'].bold{
+    @apply font-semibold text-15;
+  }
+  .html_list .tbody_tr [class*='txt'].medium{
+    @apply font-medium text-15;
+  }
+  .html_list .tbody_tr a.link{
+    @apply text-primary font-semibold hover:underline text-15;
+  }
+
+  /*진행상태*/
+  span.txt_waiting{
+    @apply text-15 text-gray-300;
+  }
+  span.txt_ing{
+    @apply text-15 text-mint-500;
+  }
+  span.txt_complate{
+   @apply text-15 text-gray-900;
+  }
+  span.txt_delay{
+    @apply text-15 text-red-500;
+  }
+
+  /*업데이트 내용*/
+  span[class*='msg_info'] {
+    @apply text-11 text-gray-800 tracking-[-0.5px] block;
+  }
+  span[class*='msg_info'].red {
+    @apply text-red-500;
+  }
+  span[class*='msg_info'] + .view_discription{
+    @apply mt-[3px]
+  }
+  span[class*='msg_info'] + span[class*='msg_info'] {
+    @apply mt-[3px]
+  }
+  
+
+  /*보기 버튼*/
+  .view_discription {
+    @apply relative hidden;
+   }
+	.view_discription input[type="checkbox"] {
+    @apply absolute left-0 top-0 opacity-0;
+  }
+	.btn_view {
+    @apply inline-block h-[20px] px-[15px] leading-[15px] border border-gray-300 bg-gray-50 rounded-[5px] cursor-pointer;
+  }
+	.btn_view:before {
+    @apply content-['보기'] text-11 text-gray-800;
+    
+  }
+	.vd_layer_w {
+    @apply hidden relative; 
+  }
+	.vd_layer {
+    @apply inline-block absolute right-0 top-[3px] mb-[60px] py-[3px] px-[10px] min-w-full bg-white border border-gray-300 rounded-[3px] text-center box-border whitespace-nowrap;
+  }
+	.html_list .tbody_tr td .vd_layer .txt_info {
+    @apply text-[0.75rem] text-gray-700;
+  }
+	.view_discription input[type="checkbox"]:checked + .btn_view {
+    @apply border-gray-500;
+  }
+	.view_discription input[type="checkbox"]:checked + .btn_view:before {
+    @apply content-['닫기'] inline-block;
+  }
+	.view_discription input[type="checkbox"]:checked ~ .vd_layer_w {
+    @apply block z-10;
+  }
+
+}
+
+@layer components {
+    /*componenet 공통*/
+    .component{
+      @apply p-[20px];
+    }
+    .component > .tit{
+      @apply  p-[10px]  border-t-[10px] border-gray-900 text-20 font-bold;
+    }
+    .component .tit-info{
+      @apply mb-[10px] p-[10px] bg-gray-70 rounded-[10px] ;
+    }
+
+    .component article + .tit-info {
+      @apply mt-[30px]
+    }
+
+    .component .tit-info p{
+      @apply text-15;
+    }
+
+    .component .tit-info .desc{
+      @apply text-13 text-gray-700;
+    }
+
+    .guide-box article{
+      @apply relative border-t-[2px] border-t-primary border-b-[1px] border-b-gray-300 px-[10px] py-[20px]
+    }
+
+    .guide-box article + article{
+      @apply mt-[30px]
+    }
+    
+    .guide-box article .guide_gray_bg{
+      @apply bg-gray-70 mt-[20px] py-[15px]
+    }
+
+    .guide-box .txt-box{
+      @apply flex justify-between items-center mb-[20px]
+    }
+
+    .guide-box .txt-box h4{
+      @apply text-18 font-bold
+    }
+    .txt-box span {
+      @apply block mt-[4px] text-[0.875rem] text-gray-600 font-normal;
+    }
+
+    .guide-box .txt-box .code_btn{
+      @apply flex items-center py-[4px] px-[10px] bg-white border border-gray-100 rounded-[10px]
+    }
+    .guide-box .txt-box button {
+      @apply h-auto py-[4px];
+    }
+
+    /* .guide-box .rander_w button + button{
+      @apply ml-[10px];
+    } */
+    .guide-box .rander_w .thumb-btns button + button {
+      @apply m-0;
+    }
+    
+    /*color*/
+    .color_lists_w {
+        @apply flex items-center  mb-[20px];
+    }
+
+    .color_list {
+        @apply flex flex-col justify-center items-center w-[81px];
+    }
+
+    .color_list + .color_list{
+      @apply ml-[20px];
+    }
+
+    .color_box {
+        @apply border w-[50px] h-[50px] shadow-lg;
+    }
+    .color_text {
+        @apply mt-[10px] px-1 text-center text-14 font-medium;
+    }
+
+    .Btncolor-codepreview > a + a{
+      @apply ml-[10px];
+    }
+
+    .Btncolor-codepreview button + button{
+      @apply ml-[10px] ;
+    }
+
+  /* .guide-box  button[class*='btn'] [class*='icon']{
+    @apply  bg-gray-300 w-[20px] h-[20px] bg-center bg-no-repeat bg-100%;
+  } */
+
+  /* .guide-box button + button{
+    @apply ml-[10px]
+  } */
+
+  .pagelists {
+    @apply overflow-hidden;
+  }
+  .guide-lists {
+    @apply flex items-center gap-[10px];
+  }
+  .guide-lists + .guide-lists {
+    @apply mt-[10px];
+  }
+  .guide-lists button + button {
+    @apply !m-0;
+  }
+  .guide-lists .thumb-badges {
+    @apply relative top-auto left-auto;
+  }
+   .guide-lists [class^="grid-lists"] {
+    @apply w-[1280px] lg:!w-full;
+  }
+   .guide-lists [class^="grid-lists"] + [class^="grid-lists"] {
+    @apply mt-[24px];
+  }
+   .guide-lists .grid-lists-col {
+    @apply w-full grid-cols-1 gap-[12px];
+  }
+   .guide-lists .guide-lists .badge-arrow {
+    @apply relative bottom-auto left-auto;
+  }
+
+   .guide-lists .guide-lists.thumb-btns {
+    @apply relative right-auto bottom-auto;
+  }
+}
+    
+@screen lg {
+  .html_header {
+    @apply mb-0;
+  }
+  .html_header .header-tit {
+    @apply text-20;
+  }
+  .gnb_lists_w {
+    @apply justify-start whitespace-nowrap overflow-x-auto;
+  }
+  .sec {
+    @apply px-0 py-[12px];
+  }
+  .status_w {
+    @apply right-0 top-[24px];
+  }
+
+  /* table */
+  .html_list {
+    @apply border-t-[1px] border-gray-400;
+  }
+  .html_list, .html_list tr, .html_list tbody, .html_list td {
+    @apply block w-full;
+  }
+  .html_list caption, .html_list thead {
+    @apply hidden;
+  }
+  .html_list tr {
+    @apply p-[10px];
+  }
+  .html_list td {
+    @apply flex w-full justify-start p-0 border-none;
+  }
+  .html_list td + td {
+    @apply pt-[10px];
+  }
+  span[class*='msg_info'] {
+    @apply text-13;
+  }
+}

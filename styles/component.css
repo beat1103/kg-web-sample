@@ -1,0 +1,1374 @@
+/*
+1. 공통요소는 무조건 컨포넌트로 모듈화해서 진행 하고 component.css에서 적용
+
+2. 공통으로 class가 아닌 경우 특정 페이지에서만 적용이 된다면  페이지명 class를 가지고 진행
+
+ ※ 로그인 페이지라면 [class*="login"] (하위페이지에도 필요하다면 적용 가능하게 하기 위함 )
+    로그인 -> 아이디 찾기 :[class*="login"].find-id
+
+3. 반응형은 기준을 tailwindcss로 잡는다.
+
+breakpoint
+ - sm: 640px 이하
+ - md:768px 이하
+ - lg:1024px 이하
+ - xl: 1280px 이하
+ - 2xl:1536px 이하
+
+ 그리고 상위 breakpoint에서 적용되 있는 css라면, 하위 breakpoint에서는 중복으로 사용하지 않는다.
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    /**반응형 **/
+    .pc-hidden{
+      @apply hidden;
+    }
+
+    .tablet-hidden{
+      @apply block
+    }
+    .tablet-show{
+      @apply hidden
+    }
+    
+    .m-hidden{
+      @apply block;
+    }
+
+    /***txt ***/
+
+  .txt-red {
+    @apply !text-state_error-bg;
+  }
+  
+  .txt-gray {
+    @apply !text-gray-400;
+  }
+
+  .txt-primary {
+    @apply !text-primary;
+  }
+
+    /*** icon ***/
+    [class*='icon']{
+      @apply inline-block bg-center bg-no-repeat bg-100%;
+      mask-repeat:no-repeat;
+      mask-size:contain;
+      mask-position:center center;
+    }
+    /* size */
+    [class*="icon"][class*="s30"]{
+      @apply w-[30px] h-[30px]
+    }
+
+    [class*="icon"][class*="s24"]{
+      @apply w-[24px] h-[24px]
+    }
+    [class*="icon"][class*="s22"]{
+      @apply w-[22px] h-[22px]
+    }
+    [class*="icon"][class*="s20"]{
+      @apply w-[20px] h-[20px]
+    }
+    [class*="icon"][class*="s18"]{
+      @apply w-[18px] h-[18px]
+    }
+    [class*="icon"][class*="s16"]{
+      @apply w-[16px] h-[16px]
+    }
+    [class*="icon"][class*="s12"]{
+      @apply w-[12px] h-[12px]
+    }
+  
+    /*** button (=> component/template/button-custom.tsx에서 폰트 사이즈를 제외한 내용은 해당 파일에서 수정) ***/
+
+    .btn-wrap{
+      @apply flex flex-wrap  justify-center gap-[10px] mt-[30px]
+    }
+
+    button{
+      @apply text-15 font-medium;
+    }
+    
+    /*size*/
+    button[class*='md']{
+      @apply text-15
+    }
+    button[class*='sm']{
+      @apply text-14
+    }
+    button[class*='xs']{
+      @apply text-14
+    }
+    /*txtbtn-size*/
+    button[class*='tb'][class*='lg']{
+      @apply text-18
+    }
+    button[class*='tb'][class*='md']{
+      @apply text-16
+    }
+    button[class*='tb'][class*='sm']{
+      @apply text-15
+    }
+    button[class*='tb'][class*='xs']{
+      @apply text-14
+    }
+    /* btn-icon*/
+    button[class*='lg'] [class*='icon']{
+      @apply w-[24px] h-[24px];
+    }
+    button[class*='md'] [class*='icon']{
+      @apply w-[20px] h-[20px];
+    }
+    button[class*='sm'] [class*='icon']{
+      @apply w-[20px] h-[20px];
+    }
+    button[class*='xs'] [class*='icon']{
+      @apply w-[16px] h-[16px];
+    }
+    /*btnicon position*/
+    /*front*/
+    button [class*='icon'][class*='left']{
+      @apply mr-[4px]
+    }
+    /*back*/
+    button [class*='icon'][class*='right']{
+      @apply ml-[4px]
+    }
+
+    /**icon 모음**/
+    /*delete*/
+    .btn-line-delete{
+      @apply bg-gray-700;
+      mask-image:url('/images/button/btn_line_delete.svg');
+    }
+
+    .icon-reset{
+      @apply bg-gray-400;
+      mask-image:url('/images/icon/icon-reset.svg');
+    }
+
+    .icon-graduation{
+      @apply bg-gray-600;
+      mask-image:url('/images/icon/icon-graduation.svg');
+    }
+  
+    .icon-won{
+      @apply bg-gray-600;
+      mask-image:url('/images/icon/icon-won.svg');
+    }
+  
+    .icon-plus{
+      @apply bg-white;
+      mask-image:url('/images/icon/icon-plus.svg');
+    }
+
+    .icon-setting{
+      @apply bg-gray-950;
+      mask-image:url('/images/icon/icon_setting.svg');
+    }
+
+    .icon-info{
+      @apply bg-gray-500;
+      mask-image:url('/images/icon/icon-info.svg');
+    }
+
+    .icon-info-dark{
+      @apply bg-gray-500;
+      mask-image:url('/images/icon/icon-info-dark.svg');
+    }
+
+
+    .icon-delete-x{
+      @apply bg-white;
+      mask-image:url('/images/icon/icon-delete-x.svg');
+    }
+
+    .icon-view-arrow{
+      @apply bg-gray-500;
+      mask-image:url('/images/icon/icon-view-arrow.svg');
+    }
+
+    .icon-write{
+      @apply bg-white;
+      mask-image:url('/images/icon/icon-write.svg');
+    }
+
+
+    /*switch*/
+    button[role="switch"]{
+      @apply  h-[20px] w-[36px] rounded-[50px] shadow-none focus-visible:ring-0  data-[state=checked]:bg-gray-700 data-[state=unchecked]:bg-gray-200  disabled:cursor-not-allowed;
+    }
+    button[role="switch"] span{
+      @apply h-[16px] w-[16px] bg-white;
+    }
+
+
+    /*** form /////////////////////////////////////////////////////////////////////////////////////////////////////////////***/
+    
+    .form-wrap + .form-wrap{
+      @apply mt-[20px]
+    }
+
+    /**input**/
+    .form-wrap input{
+      @apply overflow-hidden text-ellipsis whitespace-nowrap text-16;
+    }
+
+    /*error*/
+    .form-wrap.error input{
+      @apply border-2 border-state_error-bg focus-visible:outline-none focus-visible:border-gray-700 focus-visible:ring-0  focus-visible:border disabled:cursor-not-allowed hover:border-gray-300 disabled:bg-gray-200 disabled:text-gray-300 read-only:bg-gray-70 read-only:border-gray-300 read-only:text-gray-900 ;
+    }
+
+    /*success*/
+    .form-wrap.success input{
+      @apply border-2 border-state_success-bg focus-visible:outline-none focus-visible:border-gray-700 focus-visible:ring-0  focus-visible:border disabled:cursor-not-allowed hover:border-gray-300 disabled:bg-gray-200 disabled:text-gray-300 read-only:bg-gray-70 read-only:border-gray-300 read-only:text-gray-900 ;
+    }
+
+    /*비밀번호*/
+    .form-wrap .input-box{
+      @apply relative;
+    }
+
+    .form-wrap .input-box button{
+      @apply absolute right-[16px] top-1/2 -translate-y-1/2;
+    }
+
+
+    /** textarea **/
+    .textarea-box{
+      @apply relative w-full;
+    }
+    .textarea-box::after{
+      @apply content-[''] absolute rounded-b-[5px] bottom-[1px] left-[1px] block w-[calc(100%-15px)] h-[36px] bg-white;
+    }
+
+    .textarea-box:has(textarea[readonly])::after{
+      @apply bg-gray-70;
+    }
+    textarea::-webkit-scrollbar-thumb {
+      height: 95%;
+    }
+    .textarea-box .text-count{
+      @apply absolute text-gray-400 text-13 right-[16px] bottom-[16px] z-10;
+    }
+    .form-wrap textarea:not(:placeholder-shown) {  /* 텍스트가 입력된 상태에서 focus가 넘어갈 때 border-gray-700 적용 */
+      @apply border-gray-700;
+    }
+    .form-wrap textarea:focus:placeholder-shown { /* 텍스트가 지워졌을 때 기본 border로 돌아가기 */
+      @apply border-gray-200;
+    }
+    /*error*/
+    .form-wrap.error textarea{
+      @apply border-2 border-state_error-bg;
+    }
+  
+    /** form _ label,alert **/
+    .form-wrap label {
+      @apply block text-15 text-gray-900 mb-[9px] leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+    }
+    .form-wrap  div[role="alert"]{
+      @apply p-0 border-0 mt-[10px] w-full flex items-center bg-transparent;
+    }
+    .form-wrap div[role="alert"] h5 {
+      @apply text-15 text-gray-500 mb-0;
+    }
+    .form-wrap div[role="alert"] [class*="icon"] {
+      @apply block bg-gray-100 mr-[4px];
+    }
+    
+    /* error */
+    .form-wrap.error div[role="alert"] h5 {
+      @apply text-state_error-bg;
+    }
+    .form-wrap.error div[role="alert"] [class*="icon"] {
+      @apply bg-state_error-bg;
+      mask-image:url('/images/icon/icon_error.svg');
+    }
+
+    .form-wrap.success div[role="alert"] [class*="icon"] {
+      @apply bg-state_success-bg;
+      mask-image:url('/images/icon/icon_success.svg');
+    }
+    
+    .form-wrap.success div[role="alert"] h5{
+      @apply  text-15 text-state_success-bg;
+    }
+
+    /** search **/
+    .search-gray-box{
+      @apply flex items-center justify-center px-[48px] py-[42px] rounded-[20px] bg-gray-70;
+    }
+
+
+
+
+    /*btn-icon*/
+    .btn-search{
+      @apply bg-gray-400  hover:bg-gray-900;
+      mask-image:url('/images/button/btn_search.svg');
+    }
+    .btn-search-delete[class*='delete']{
+      @apply bg-gray-400  hover:bg-gray-900;
+      mask-image:url('/images/button/btn_search_delete.svg');
+    }
+
+ 
+    /*** table /////////////////////////////////////////////////////////////////////////////////////////////////////////***/
+   
+    .table-wrap{
+      @apply w-full overflow-x-auto;
+    }
+
+    /*기본 테이블(고객센터 등등)*/
+    table.table-board{
+      @apply w-full min-w-[800px] border-t-2 border-gray-950;
+    }
+    /*thead*/
+    table.table-board thead tr{
+      @apply border-gray-900 hover:bg-white;
+    }
+    table.table-board thead th {
+      @apply text-center p-[20px];
+    }
+    table.table-board thead th span{
+      @apply text-16 text-gray-900;
+    }
+    /*tbody*/
+    table.table-board tbody tr{
+      @apply border-gray-200 hover:bg-white;
+    }
+
+    table.table-board tbody tr:last-child{
+      @apply border-b border-gray-200;
+    }
+
+    table.table-board tbody td{
+      @apply text-center  p-[20px];
+    }
+
+    table.table-board tbody td span{
+     @apply text-gray-800 text-16;
+    }
+
+    table.table-board tbody td.title{
+      @apply text-left;
+    }
+
+    table.table-board tbody td.title a{
+      @apply font-medium; 
+    }
+
+    table.table-board tbody td a{
+      @apply line-clamp-1; 
+    }
+
+    table.table-board  .icon-download{
+      @apply bg-gray-950;
+      mask-image: url("/images/icon/icon_download_gray.svg");
+      background-image:none;
+    }
+
+    .icon-notice{
+      @apply bg-primary rounded-full bg-[url('/images/icon/icon-pin.svg')];
+    }
+
+    /*테이블 그레이 (팝업 / 기타 등등 테이블)*/
+      .table-wrap:has(.table-gray){
+        @apply border-t border-gray-950 bg-transparent;
+      }
+
+      table.table-gray{
+        @apply w-full min-w-[600px] ;
+      }
+      /*thead*/
+      table.table-gray thead tr{
+        @apply border-gray-200 bg-gray-70 hover:bg-gray-70;
+      }
+      table.table-gray thead th {
+        @apply text-center px-[10px] py-[16px];
+      }
+
+      table.table-gray thead th + th{
+        @apply border-l border-l-gray-200;
+      }
+      table.table-gray thead th span{
+        @apply text-15 text-gray-900;
+      }
+      /*tbody*/
+      table.table-gray tbody tr{
+        @apply border-gray-200 hover:bg-white;
+      }
+  
+      table.table-gray tbody tr:last-child{
+        @apply border-b border-gray-200;
+      }
+  
+      table.table-gray tbody td{
+        @apply text-center  py-[20px] px-[10px];
+      }
+      table.table-gray tbody td + td{
+        @apply border-l border-l-gray-200; 
+      }
+  
+      table.table-gray tbody td span{
+       @apply text-gray-800 text-15;
+      }
+
+      
+    /** 회원가입 테이블 **/
+    table.table-round{
+      @apply w-full min-w-[550px] bg-white border border-gray-200 rounded-[8px] overflow-hidden border-separate;
+    }
+    /*thead*/
+    table.table-round thead tr{
+      @apply border-b border-gray-200 hover:bg-white;
+    }
+    table.table-round thead th {
+      @apply border-b border-gray-200 text-center py-[10px];
+    }
+
+    table.table-round thead th + th{
+      @apply  border-l ;
+    }
+    
+    table.table-round thead th span{
+      @apply text-15 text-gray-800 font-medium;
+    }
+    /*tbody*/
+    table.table-round tbody tr{
+      @apply  hover:bg-white;
+    }
+
+    table.table-round tbody td{
+      @apply border-b  border-gray-200 text-center  py-[10px];
+    }
+
+    table.table-round tbody tr:last-child td{
+      @apply border-b-0
+    }
+
+    table.table-round tbody td + td{
+      @apply border-l;
+    }
+
+    table.table-round tbody td span{
+     @apply text-gray-600 text-14;
+    }
+
+    /** 내포인트 테이블2 **/
+    table.table-round2{
+      @apply w-full min-w-[550px] bg-white border border-gray-100 rounded-[10px] border-separate shadow-[0px1px5px0pxrgba(140,143,161,0.11)];
+    }
+    /*thead*/
+    table.table-round2 thead tr{
+      @apply border-b-0 bg-gray-50 hover:bg-gray-50;
+    }
+    table.table-round2 thead th {
+      @apply text-center py-[10px];
+    }
+
+    table.table-round2 thead th span{
+      @apply text-14 text-gray-600 font-medium;
+    }
+
+    /*tbody*/
+    table.table-round2 tbody tr{
+      @apply  border-b-0 hover:bg-white;
+    }
+
+    table.table-round2 tbody td{
+      @apply text-center  py-[10px];
+    }
+
+
+    table.table-round2 tbody td span{
+      @apply text-gray-800 text-14;
+    }
+
+    table.table-round2 tbody td b{
+      @apply text-gray-800 text-15;
+    }
+
+
+
+    /*** element/////////////////////////////////////////////////////////////////////////////////////////////////////////***/
+    
+    /*** keyword ***/
+    .keyword-list_w{
+      @apply flex flex-wrap items-center gap-[8px];
+    }
+  
+    .keyword{
+      @apply border flex items-center rounded-[40px] py-[6px] px-[16px] gap-[2px] text-14 text-gray-700 font-medium;
+    }
+  
+    .keyword[class*='sm']{
+      @apply py-[4px] px-[12px];
+    }
+  
+    .keyword[class*='line']{
+      @apply border-gray-100 bg-white hover:border-gray-300;
+    }
+  
+    .keyword[class*='gray']{
+      @apply border-gray-70 bg-gray-70 hover:border-gray-100 hover:bg-gray-100;
+    }
+
+
+    /**check-box**/
+    .check-wrap{
+      @apply flex items-center;
+    }
+
+    button[role="checkbox"], label{
+      @apply inline-block align-middle;
+    }
+
+    button[role="checkbox"]{
+      @apply  w-[20px] h-[20px] p-[2px] border-gray-500 bg-white shadow-none rounded-[5px] focus-visible:ring-0 data-[state=checked]:bg-gray-700 data-[state=checked]:border-gray-700 data-[state=checked]:text-white disabled:border-gray-300 disabled:bg-gray-200 data-[state=checked]:disabled:border-gray-300 data-[state=checked]:disabled:bg-gray-200 data-[state=checked]:disabled:text-gray-300;
+    }
+
+    button[role="checkbox"] span{
+      @apply !text-white !p-0 !m-0;
+    }
+    
+    button[role="checkbox"].round{
+      @apply rounded-full border-gray-300 data-[state=checked]:border-gray-700 bg-[url(/images/icon/icon-check-round.svg)] bg-center disabled:bg-none;
+    }
+    
+    button[role="checkbox"] svg{
+      @apply w-full h-full
+    }
+
+    button[role="checkbox"].sm{
+      @apply w-[16px] h-[16px] 
+    }
+
+    button[role="checkbox"] + label{
+      @apply leading-[20px] mb-0 pl-[8px] text-14 text-gray-700;
+    } 
+    
+    /*** filter ***/
+    .filter-list{
+      @apply overflow-x-auto
+    }
+    .filter-list::-webkit-scrollbar{
+      @apply hidden
+    }
+    .filter-list .filter{
+      @apply flex-wrap justify-start;
+    }
+
+    .filter-list .filter.lg {
+      @apply gap-[8px];
+    }
+    
+    .filter-list .filter.sm {
+      @apply gap-[6px];
+    }
+
+    .filter-list + .filter-list{
+      @apply mt-[32px]
+    }
+
+    /*크기*/
+    
+    .filter-list .filter.xlg button{
+      @apply text-16 px-[24px] py-[8px] rounded-[50px] data-[state=on]:pl-[48px];
+      background-position: 24px 50%; background-size:20px; 
+    }
+
+    .filter-list .filter.lg button{
+      @apply text-15 px-[20px] py-[6px] rounded-[50px] data-[state=on]:pl-[42px];
+      background-position: 20px 50%; background-size:18px; 
+    }
+
+    .filter-list .filter.md button{
+      @apply text-14 px-[14px] py-[5px] rounded-[50px] data-[state=on]:pl-[32px];
+      background-position:14px 50%; background-size:16px; 
+    }
+
+    .filter-list .filter.sm button{
+      @apply text-13 px-[14px] py-[4px] rounded-[50px] data-[state=on]:pl-[32px];
+      background-position:14px 50%; background-size:14px; 
+    }
+
+    /**컬러**/
+
+    /*primary*/
+    .filter-list .filter.primary button{
+      @apply  bg-primary-50 text-primary-400 bg-no-repeat hover:bg-primary-100 hover:text-primary data-[state=on]:bg-[url('/images/icon/icon-filter-check.svg')]  data-[state=on]:bg-primary data-[state=on]:text-white data-[state=on]:font-bold;
+
+    }
+
+    /*gray-line*/
+    .filter-list .filter.gray-line button{
+      @apply  border bg-white text-gray-500 border-gray-200 bg-no-repeat hover:bg-gray-50 hover:text-gray-600 hover:border-gray-300 data-[state=on]:bg-[url('/images/icon/icon-filter-check-gray.svg')]  data-[state=on]:border-gray-600 data-[state=on]:text-gray-600 data-[state=on]:font-bold;
+    }
+
+    /*gray-line2*/
+    .filter-list .filter.gray-line2 button{
+      @apply  border bg-white text-gray-500 border-gray-200 bg-no-repeat hover:bg-gray-50 hover:text-gray-600 hover:border-gray-300 data-[state=on]:pl-[20px] data-[state=on]:border-primary data-[state=on]:text-primary data-[state=on]:font-bold;
+    }
+
+    /*pagenation*/
+    .pagenation-wrap{
+      @apply mt-[50px]
+    }
+    .pagenation-wrap ul li{
+      @apply h-[30px]
+    }
+
+    .pagenation-wrap ul li{
+      @apply w-[30px] h-[30px]
+    }
+
+    .pagenation-wrap ul li a{
+      @apply rounded-[5px] w-[30px] h-[30px] text-16 text-gray-700 hover:bg-primary-50 active:bg-primary-200;
+    }
+
+    .pagenation-wrap ul li a.custombtn{
+      @apply h-[30px] gap-0 p-0 rounded-[5px] cursor-pointer bg-white hover:bg-blue-50 active:bg-primary;
+    }
+
+    .pagenation-wrap ul li a.index{
+      @apply bg-primary text-white font-medium
+    }
+
+    .pagenation-wrap ul li i.icon-pagenation-first{
+      @apply bg-gray-700 active:bg-white disabled:bg-gray-300;
+      mask-image:url('/images/icon/icon-pagenation-first.svg');
+      mask-size:20px 20px;
+    }
+
+    .pagenation-wrap ul li i.icon-pagenation-prev{
+      @apply bg-gray-700 active:bg-white disabled:bg-gray-300;
+      mask-image:url('/images/icon/icon-pagenation-prev.svg');
+      mask-size:20px 20px;
+    }
+
+    .pagenation-wrap ul li i.icon-pagenation-next{
+      @apply bg-gray-700 active:bg-white disabled:bg-gray-300;
+      mask-image:url('/images/icon/icon-pagenation-next.svg');
+      mask-size:20px 20px;
+    }
+
+    .pagenation-wrap ul li i.icon-pagenation-last{
+      @apply bg-gray-700 active:bg-white disabled:bg-gray-300;
+      mask-image:url('/images/icon/icon-pagenation-last.svg');
+      mask-size:20px 20px;
+    }
+
+    /*** accodian ***/
+    .accordion{
+      @apply relative w-full border-t-2 border-gray-950;
+    }
+    .accordion .accordion-header{
+      @apply flex justify-between  border-b border-gray-900;
+    }
+    .accordion .accordion-header div{
+      @apply p-[20px] w-[100px] text-center;
+    }
+
+    .accordion .accordion-header div.detail{
+      @apply w-auto flex-1 text-center;
+    }
+
+    .accordion .accordion-item{
+      @apply border-gray-200 
+    }
+
+    .accordion .accordion-item .accordion-trigger{
+      @apply py-[20px] flex-wrap hover:no-underline bg-[url('/images/icon/icon-accordion-down.svg')] bg-no-repeat [&[data-state=open]]:bg-[url('/images/icon/icon-accordion-up.svg')]  bg-[right_20px_top_24px];
+    }
+
+    .accordion .accordion-item .accordion-trigger svg{
+      @apply hidden;
+    }
+
+
+    /**alert**/
+    div[role="alert"].alret-info{
+      @apply border-none p-0 pl-[24px]; 
+    }
+
+    div[role="alert"].alret-info i{
+      @apply absolute left-0 top-0 ; 
+      
+    }
+
+    div[role="alert"].alret-info .alret-desctiption{
+      @apply text-15 text-gray-500;
+    }
+
+    div[role="alert"].error .arlet-txt{
+      @apply  text-15 text-state_error-bg;
+    }
+
+    
+    /*data-null*/
+    .data-null{
+      @apply py-[120px] flex flex-col justify-center items-center w-full rounded-[10px] border border-gray-100 text-center;
+    }
+
+    .data-null.bg-gray{
+      @apply bg-gray-50 border-none;
+    }
+
+    .data-null .null-img{
+      @apply w-[100px] h-[100px] mx-auto bg-no-repeat bg-contain;
+    }
+
+    .data-null .null-img.null-list {
+      @apply bg-[url(/images/img/img-null-list.png)] ; 
+    }
+
+    .data-null .null-img.null-search {
+      @apply bg-[url(/images/img/img-null-search.png)]; 
+    }
+
+    .data-null .null-txt{
+      @apply mt-[10px] text-15 text-gray-600 ;
+    }
+    .data-null .null-txt .txt-gray{
+      @apply text-14 text-gray-400 mt-[6px]; 
+    }
+    .data-null .null-link{
+      @apply flex items-center justify-center mt-[6px] text-14 text-gray-400;
+    }
+
+    .data-null .null-link {
+      @apply ml-[2px];
+    }
+
+    .icon-link-arrow{
+      @apply  bg-gray-400;
+      mask-image:url('/images/icon/icon-link-arrow.svg');
+    }
+
+    .icon-calendar{
+      @apply  bg-gray-600;
+      mask-image:url('/images/icon/icon-calendar.svg');
+    }
+
+    .icon-datepicker{
+      @apply  bg-gray-400;
+      mask-image:url('/images/icon/icon-datepicker.svg');
+    }
+
+    .data-null .null-txt + button{
+      @apply mt-[16px]
+    }
+
+    /* 컴포넌트 - selectbox-drawer 반응형 */
+    .select-wrap{
+      @apply flex gap-[8px];
+    }
+    
+    .select-wrap button {
+      @apply flex items-center text-16 justify-between px-[16px] py-[10px] w-full bg-white border-[1px] border-gray-200 rounded-[5px] whitespace-nowrap overflow-hidden text-ellipsis;
+    }
+    
+    .select-wrap button[data-state=open] svg{
+      @apply transition-transform rotate-180;
+    }
+
+
+    /* 컴포넌트 - selectbox- 소셜러닝 top select */
+    .select-wrap.opacity button {
+      @apply flex items-center justify-between px-[16px] py-[10px] w-full bg-[rgba(255,255,255,0.50)] border-[1px] border-white rounded-[8px] whitespace-nowrap overflow-hidden text-ellipsis;
+    }
+
+    div[role="tablist"] div[data-state="active"] button span{
+      @apply text-primary
+    }
+
+    /*AspectRatio*/
+    .AspectRatio{
+      @apply overflow-hidden;
+    }
+    .AspectRatio img{
+      @apply object-cover object-top min-h-[100%] min-w-[100%];
+    }
+
+    /*datepicker-calender*/
+    .datepicker-wrap + div[role="dialog"] {
+      @apply w-full rounded-[10px] border border-gray-200 overflow-hidden;
+      box-shadow: 0px 4px 12px 0px rgba(140, 143, 161, 0.12);
+    }
+
+    div[role="dialog"] .flex .rdp {
+     @apply w-full p-0 flex-1
+    }
+
+     .rdp  .rdp-caption-top{
+      @apply bg-gray-50 py-[10px] px-[15px];
+    }
+
+     .rdp  .rdp-caption-top button.btn-arrow{ 
+      @apply px-[6px] w-[32px] h-[32px] bg-white rounded-[10px] border border-gray-200; 
+    }
+
+     .rdp  .rdp-caption-top button.btn-monthchage{
+      @apply pl-[6px] w-[32px] h-[32px] border rounded-[10px] bg-white border-gray-200;
+    }
+
+     .rdp  .rdp-caption-top button[role="combobox"]{
+      @apply   w-auto p-0 justify-start border-none shadow-none focus:ring-0 text-gray-800 text-14 font-medium bg-transparent mx-[10px];
+    }
+    
+     .rdp-caption-top button[role="combobox"]::after {
+      @apply content-[''] ml-[3px] inline-block w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[8px] border-t-gray-950;
+    }
+
+     .rdp-caption-top button[role="combobox"][data-state="open"]::after {
+      @apply transform -rotate-180
+    }
+
+     .rdp  .rdp-caption-top button[role="combobox"] span:has(svg){
+      @apply hidden
+    }
+
+     .rdp-caption-top .date-txt{
+      @apply text-gray-800 text-15 font-medium;
+    }
+
+     .rdp  table .rdp-head tr.flex{
+      @apply grid grid-cols-7 mb-[10px];
+    }
+
+     .rdp  table .rdp-head tr.flex th{
+      @apply w-full
+    }
+
+    div[role="dialog"] .rdp-caption-top + table{
+      @apply w-[calc(100%-20px)] mx-auto;
+    }
+
+     .rdp  table .rdp-tbody tr.flex{
+      @apply grid grid-cols-7
+    }
+
+    .rdp  .rdp-caption_end{
+      @apply pb-[10px];
+    }
+
+     .rdp  table .rdp-tbody tr + tr{
+      @apply mt-[15px];
+    }
+
+    div[role="dialog"] .rdp table .rdp-tbody tr td {
+      @apply px-[7px] relative min-w-[40px] bg-transparent [&:has([aria-selected])]:rounded-none [&:has([aria-selected])]:bg-transparent
+    }
+
+
+    .datepicker-wrap .rdp table .rdp-tbody tr td button[name="day"], div[role="dialog"] .rdp table .rdp-tbody tr td  button[name="day"]{
+      @apply w-[36px] h-[36px] rounded-full hover:bg-primary-50; 
+    }
+   
+    .datepicker-wrap .rdp table .rdp-tbody tr td button[name="day"].sunday{
+      @apply text-red-500;
+    }
+
+     .rdp  table .rdp-tbody tr td button[name="day"].day_today{
+      @apply  bg-white border border-primary hover:bg-primary-50 hover:border-0
+    }
+
+     .rdp  table .rdp-tbody tr td button[name="day"].day-range-start,  .rdp  table .rdp-tbody tr td button[name="day"].day-range-end
+    , .rdp  table .rdp-tbody tr td button[name="day"].day_selected{
+      @apply rounded-full aria-selected:bg-primary aria-selected:text-white hover:aria-selected:bg-primary hover:aria-selected:text-white
+    }
+    
+    div[role="dialog"] .rdp  table .rdp-tbody tr td{
+      @apply bg-transparent
+    }
+    div[role="dialog"] .rdp  table .rdp-tbody tr td button[name="day"].day-range-start{
+      @apply z-10 relative
+    }
+
+    div[role="dialog"] .rdp  table .rdp-tbody tr td button[name="day"].day-range-start::after{
+      @apply hidden
+    }
+
+    div[role="dialog"] .rdp  table .rdp-tbody tr td:has(button[name="day"].day-range-start)::after{
+      @apply content-[''] absolute top-0 right-[-7px] block w-[50%] h-[36px] bg-primary-50 z-[0]
+    }
+
+    div[role="dialog"] .rdp  table .rdp-tbody tr td:has(button[name="day"].day-range-end.day-range-start)::after{
+      @apply hidden;
+    }
+
+    div[role="dialog"] .rdp  table .rdp-tbody tr td button[name="day"].day-range-end{
+      @apply relative z-10
+    }
+
+    div[role="dialog"] .rdp  table .rdp-tbody tr td button[name="day"].day-range-end::before{
+      @apply hidden;
+    }
+
+    div[role="dialog"] .rdp  table .rdp-tbody tr td:has(button[name="day"].day-range-end)::before{
+      @apply content-[''] absolute top-0 left-[0] block w-[50%] h-[36px] bg-primary-50 z-[0]
+    }
+    
+    div[role="dialog"] .rdp  table .rdp-tbody tr td:has(button[name="day"].day-range-start.day-range-end)::before{
+      @apply hidden
+    }
+
+    .datepicker-wrap .rdp  table .rdp-tbody tr td button[name="day"].day_range_middle,  div[role="dialog"] .rdp  table .rdp-tbody tr td button[name="day"].day_range_middle{
+      @apply  w-[calc(100%+14px)]  rounded-none hover:bg-primary-50 aria-selected:bg-primary-50 aria-selected:text-primary;
+    }
+
+    .rdp  table .rdp-tbody tr td button[name="day"].day_today.day_range_middle{
+      @apply border-primary-50;
+    }
+
+   .calender-leftwrap {
+      @apply relative w-[105px] p-[10px] bg-gray-50 border-r border-gray-200;
+    }
+
+   .calender-leftwrap .filter-list .filter.gray-line button{
+      @apply block px-[14px] py-[4px] rounded-[50px] border border-gray-200 bg-white text-13 text-gray-500; 
+    }
+
+   .calender-leftwrap .filter-list .filter.gray-line button[data-state="on"]{
+      @apply bg-none border-primary text-primary font-bold; 
+    }
+
+   .calender-leftwrap .reset-btn{
+      @apply absolute bottom-0
+    }
+
+    .icon-time-reset{ 
+      @apply bg-gray-500;
+      mask-image:url(/images/icon/icon-time-reset.svg);
+      mask-size:20px;
+    }
+
+
+    /**datepicker**/
+    .datepicker-wrap .datepicker-input{
+      @apply items-center justify-between text-left font-normal min-w-[180px] rounded-[5px] border border-gray-200 bg-white px-[12px] drop-shadow-none disabled:bg-gray-200 disabled:text-gray-300;
+    }
+
+    .datepicker-wrap .datepicker-input span{
+      @apply block text-15 text-gray-900 w-[calc(100%-25px)] ;
+    }
+
+    .datepicker-wrap .datepicker-input:hover .icon-datepicker, .datepicker-wrap .datepicker-input[data-state="open"] .icon-datepicker{
+      @apply bg-gray-700
+    }
+
+       .datepicker-wrap .datepicker-input .icon-datepicker{
+        @apply ml-0
+      }
+
+      .datepicker .SelectItem{
+        @apply pr-[50px]
+      }
+
+    /**timepicker**/
+    .timepicker-wrap button[role="combobox"]{
+      @apply relative items-center justify-between text-left font-normal w-[110px] rounded-[5px] border border-gray-200 bg-white px-[12px];
+    }
+
+    .timepicker-wrap button[role="combobox"]::after{
+      @apply content-[''] absolute right-[12px] top-[8px] block w-[20px] h-[20px] bg-gray-400;
+      mask-image: url('/images/icon/icon-time.svg')
+    }
+
+    .timepicker-wrap button[role="combobox"]:hover::after,.timepicker-wrap button[role="combobox"][data-state="open"]::after{
+      @apply bg-gray-700
+    }
+
+    .timepicker-wrap button[role="combobox"] span{
+      @apply text-15 text-gray-900;
+    }
+
+    .timepicker-wrap button[role="combobox"] svg{
+      @apply hidden
+    }
+    
+
+    /*calender-sm*/
+    .calendar-wrap.type-sm{
+      @apply w-full
+    }
+
+    .calendar-wrap.type-sm table td, .calendar-wrap.type-sm table th, .calendar-wrap.type-sm .fc-theme-standard .fc-scrollgrid{
+      @apply border-none
+    }
+    
+    /*top영역*/
+    .calendar-wrap.type-sm .fc-header-toolbar .fc-toolbar-title{
+      @apply text-gray-900 text-18 font-bold
+    }
+
+    .calendar-wrap.type-sm .fc-header-toolbar button.fc-button{
+      @apply  relative p-0 w-[28px] h-[28px] rounded-[10px] border border-gray-200 bg-white focus:shadow-none;
+    }
+    .calendar-wrap.type-sm .fc-header-toolbar button.fc-button span{
+      @apply m-0  rounded-[10px] bg-white;
+    }
+
+    .calendar-wrap.type-sm .fc-header-toolbar button.fc-button span::before{
+      @apply text-transparent absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block  w-[16px] h-[16px] bg-gray-950;
+      mask-image:url(/images/icon/icon-calender-arrow.svg);
+    }
+
+    .calendar-wrap.type-sm .fc-header-toolbar button.fc-prev-button span::before{
+      @apply rotate-180
+    }
+
+
+    /*요일영역*/
+    .calendar-wrap.type-sm table tr{
+      @apply py-[19px]
+    }
+
+    .calendar-wrap.type-sm table tr a {
+      @apply text-14 text-gray-500 font-normal;
+    }
+
+    /*날짜영역*/
+    .calendar-wrap.type-sm table td.fc-day:hover .fc-daygrid-day-top{
+      @apply bg-primary-100
+    }
+    
+    .calendar-wrap.type-sm table td .fc-daygrid-day-top{
+      @apply relative justify-center cursor-pointer items-center rounded-full max-w-[55px]  w-full aspect-[1] mx-auto;
+    }
+
+    .calendar-wrap.type-sm table td.fc-day-other.fc-day-highlight .fc-daygrid-day-top{
+      @apply opacity-100;
+    }
+
+    .calendar-wrap.type-sm table td .fc-daygrid-day-top a span{
+      @apply text-14 text-gray-800 font-medium;
+    }
+
+    .calendar-wrap.type-sm table td.fc-day-highlight .fc-daygrid-day-top a span, 
+    .calendar-wrap.type-sm table td.fc-day-sat.fc-day-highlight .fc-daygrid-day-top a span,
+    .calendar-wrap.type-sm table td.fc-day-sun.fc-day-highlight .fc-daygrid-day-top a span{
+      @apply text-white
+    }
+
+    .calendar-wrap.type-sm table td.fc-day-sat .fc-daygrid-day-top a span{
+      @apply text-state_info
+    }
+
+    .calendar-wrap.type-sm table td.fc-day-sun .fc-daygrid-day-top a span{
+      @apply text-state_warning-bg
+    }
+
+    .calendar-wrap.type-sm .fc .fc-highlight{
+      @apply rounded-full max-w-[55px]  w-full aspect-[1] left-1/2 -translate-x-1/2 bg-primary
+    }
+
+    .calendar-wrap.type-sm table td.fc-day-other.fc-day-highlight .fc-highlight{
+      @apply opacity-30
+    }
+
+    .calendar-wrap.type-sm table td.fc-day-today {
+      @apply bg-transparent relative
+    }
+
+    .calendar-wrap.type-sm table td.fc-day-today .fc-daygrid-day-top::after {
+      @apply content-[''] absolute max-w-[55px]  w-full aspect-[1] left-1/2 -translate-x-1/2 border border-primary rounded-full z-0
+    }
+
+    /*달력 공통 (툴팁 디자인)*/
+
+    .calendar-wrap .fc-daygrid-day-events:has(.tooltip){
+      @apply absolute top-[30%] left-1/2 -translate-x-1/2 flex justify-center items-center z-10  cursor-pointer;
+    }
+
+    .calendar-wrap  .fc-daygrid-event-harness:has(.tooltip){
+      @apply static cursor-pointer w-full
+    }
+
+    .calendar-wrap .fc-h-event.tooltip{
+      @apply bg-transparent border-none w-full justify-center
+    }
+    
+
+    .calendar-wrap .tooltip-container .tooltip-button{ 
+      @apply w-[5px] h-[5px] rounded-full bg-state_error-bg border-none;
+      font-size: 0;
+    }
+
+    .calendar-wrap .tooltip-container .tooltip-content{
+      @apply hidden absolute top-[30px] left-[50%] -translate-x-1/2 bg-gray-800 p-[15px] text-15 text-white rounded-[5px] -z-40 max-w-[200px]  
+    }
+
+    .calendar-wrap .tooltip-container .tooltip-content::before {
+      @apply content-[''] absolute top-[-6px] left-1/2 -translate-x-1/2 w-0 h-0  rounded-none
+        border-l-[7px] border-r-[7px] border-b-[6px] border-l-transparent border-r-transparent border-b-gray-800;
+    }
+
+    .calendar-wrap .fc-daygrid-event-harness:hover .tooltip-container .tooltip-button + .tooltip-content {
+      @apply block
+    }
+
+    .calendar-wrap .fc .fc-daygrid-day-events{
+      @apply min-h-0 mb-[10px]
+
+    }
+
+    /*circle progress*/
+   .circle-progress-wrap .circle-bg{
+    @apply  stroke-[5] stroke-gray-200 
+   }
+
+   .circle-progress-wrap .circle-progress{
+    @apply  stroke-[5] stroke-primary 
+   }
+
+
+
+    /*** 반응형 ***/
+
+    /*1536px*/
+    @screen 2xl {
+  
+  
+    }
+
+    /*1280px*/
+    @screen xl {
+      .tablet-show{
+        @apply block
+      }
+      .tablet-hidden{
+        @apply hidden
+      }
+    }
+
+    /*1024px :: 모바일 기준*/
+    @screen lg {
+
+    /**반응형 **/
+    .pc-hidden{
+      @apply block;
+    }
+    
+    .m-hidden{
+      @apply hidden;
+    }
+
+      /*accodion*/
+      .accordion .accordion-header{
+        @apply hidden;
+      }
+      .accordion .accordion-item .accordion-trigger{
+        @apply justify-start pt-[16px] px-[16px];
+      }
+
+      .accordion .accordion-item .accordion-trigger div{
+        @apply w-auto px-0
+      }
+
+      
+      .accordion .accordion-item .accordion-trigger div.detail{
+        @apply pr-[35px]
+      }
+      
+      .accordion .accordion-item .accordion-trigger div:nth-child(1){
+        @apply hidden;
+      }
+
+      .accordion .accordion-item .accordion-trigger div:nth-child(2){
+        @apply pl-[28px];
+      }
+
+      .accordion .accordion-item .accordion-trigger div:nth-child(2)::before{
+        @apply content-[''] absolute left-[0px] top-[0px] block w-[22px] h-[22px] mr-[10px] bg-[url(/images/icon/icon_accodion_question.svg)];
+        
+      }
+
+      .accordion .accordion-item .accordion-trigger div.detail{
+        @apply w-full flex-none pl-0 pt-[6px];
+      }
+
+      .accordion .accordion-item .accordion-trigger div.detail::before{
+        @apply hidden
+      }
+
+      .accordion .accordion-item .accordion-content{
+        @apply pl-[0px];
+      }
+
+
+      /** search **/
+      .search-gray-box{
+        @apply w-screen py-[20px] px-[16px] rounded-[0px];
+      }
+
+      .search-gray-box .search-wrap {
+        @apply max-w-[100%] p-0;
+      }
+      .search-gray-box .search-wrap .search-Input{
+        @apply text-15
+      }
+
+      /*tab drawer*/
+      .tab .select-drawer-lists .btn-select-active {
+        @apply  bg-primary-50 text-primary bg-none;
+      }
+
+      .tab .select-drawer-lists .btn-select-active::after{
+        @apply  bg-primary ;
+      }
+
+      div[role="tablist"] div[data-state="active"] button[data-state="open"] .select-arrow-down{
+        @apply transition-transform rotate-180;
+      }
+      div[role="tablist"] div[data-state="active"] button[data-state="open"] .select-arrow-down::after{
+        @apply  bg-primary;
+      }
+
+
+      /**datepicker **/
+      .select-drawer-lists.datepicker{
+        @apply  max-h-[50vh] overflow-y-auto grid grid-cols-3 gap-[8px] px-[24px]
+      }
+      .select-drawer-lists.datepicker button{
+        @apply  w-full text-center justify-center px-0 rounded-[5px] border-gray-100 border text-gray-700
+      }
+
+      .select-drawer-lists.datepicker .btn-select-active{
+        @apply pr-0 border-gray-700 text-gray-700
+      }
+
+      .select-drawer-lists.datepicker .btn-select-active:after{
+        @apply hidden
+      }
+
+      /*달력*/
+      .datepicker-wrap > .flex, div[role="dialog"] > div.datepiceker > .flex {
+        @apply flex-col-reverse
+      } 
+
+      div[role="dialog"] > div.datepiceker > .flex {
+        @apply max-w-[95vw] w-[435px]
+      }
+
+      .rdp .rdp-caption-top{
+        @apply rounded-t-[5px] rounded-l-[5px]
+      }
+
+      .datepicker-wrap .flex .rdp > .flex,  div[role="dialog"] .rdp > .flex{
+        @apply flex-col 
+      } 
+
+      .rdp .rdp-caption-top button[role="combobox"]{
+        @apply  w-auto p-0 justify-start border-none shadow-none focus:ring-0 text-gray-800 text-14 font-medium bg-transparent;
+      }
+      .rdp .rdp-caption-top div button.combbox + button.combbox{
+        @apply mx-[10px]
+      }
+
+      .rdp .rdp-caption-top div button.combbox .select-arrow-down{
+        @apply ml-[3px] inline-block w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[8px] border-t-gray-950;
+      }
+
+      
+      div[role="dialog"] .rdp table .rdp-tbody tr {
+        @apply mb-[15px]
+      }
+
+
+      .calender-leftwrap{
+        @apply w-full border-r-0 border-t  rounded-b-[5px] rounded-r-[5px]
+      }
+
+      .calender-leftwrap .filter-list{
+        @apply w-[calc(100%-54px)] overflow-x-auto ;
+      }
+      .calender-leftwrap .filter-list::-webkit-scrollbar{
+        @apply hidden
+      }
+
+      .calender-leftwrap .filter-list .filter{
+        @apply flex w-max
+      }
+
+      .calender-leftwrap .reset-btn{
+        @apply right-[15px] bottom-[10px]
+      }
+
+
+
+
+    /**timepicker**/
+    .timepicker-wrap button.combobox{
+      @apply relative items-center justify-between text-left font-normal min-w-[180px] rounded-[5px] border border-gray-200 bg-white px-[12px] py-[4px];
+    }
+
+    .timepicker-wrap button.combobox::after{
+      @apply content-[''] absolute right-[12px] top-[8px] block w-[20px] h-[20px] bg-gray-400;
+      mask-image: url('/images/icon/icon-time.svg')
+    }
+    .timepicker-wrap button.combobox span{
+      @apply  text-15 text-gray-900;
+    }
+
+    .select-drawer-lists.timepicker{
+      @apply max-h-[50vh] overflow-y-auto;
+    }
+
+    .select-drawer-lists.timepicker button{
+      @apply  w-full pr-0  justify-start;
+    }
+
+    
+      /*table*/
+      table.table-board{
+        @apply  min-w-[100%]  border-t border-gray-200;
+      }
+      /*thead*/
+      table.table-board thead{
+        @apply hidden;
+      }
+      table.table-board tbody tr{
+        @apply relative block p-[16px];
+      }    
+        table.table-board tbody td{
+           @apply inline-flex  p-0 p-0;
+        }
+
+      table.table-board tbody td.title{
+        @apply w-full;
+      }
+        .table-board tbody td span.pc-hidden{
+            @apply text-gray-400;
+        }
+
+    }
+
+    /*768px*/
+    @screen md {
+      .select-wrap button {
+        @apply text-15;
+      } 
+    
+      .form-wrap input{
+        @apply text-15;
+      }
+
+    }
+    
+    /*640px*/
+    @screen sm {
+
+      div[role="dialog"] .rdp table .rdp-tbody tr td button[name="day"]{
+        @apply w-[20px] h-[20px]
+      }
+  
+    }
+
+}
