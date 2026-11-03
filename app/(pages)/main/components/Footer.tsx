@@ -1,26 +1,26 @@
 "use client"
 
-import { Home, CheckCircle, Clock } from "lucide-react"
+import { Home, Clock } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 py-12 text-white">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid gap-8 md:grid-cols-4">
           <div>
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center">
+            <div className="mb-4 flex items-center space-x-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600">
                 <Home className="h-5 w-5 text-white" />
               </div>
-              <span className="font-bold text-lg">연수원 시스템</span>
+              <span className="text-lg font-bold">연수원 시스템</span>
             </div>
-            <p className="text-gray-400 text-sm">
+            <p className="text-sm text-gray-400">
               환급과정 심사를 위한 통합 관리 플랫폼
             </p>
           </div>
-          
+
           <div>
-            <h4 className="font-semibold mb-4">시스템</h4>
+            <h4 className="mb-4 font-semibold">시스템</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>Next.js 15.5.3</li>
               <li>React 19.1.0</li>
@@ -28,9 +28,9 @@ export default function Footer() {
               <li>Turbopack</li>
             </ul>
           </div>
-          
+
           <div>
-            <h4 className="font-semibold mb-4">기능</h4>
+            <h4 className="mb-4 font-semibold">기능</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>JWT 인증</li>
               <li>실시간 모니터링</li>
@@ -38,12 +38,12 @@ export default function Footer() {
               <li>API 프록시</li>
             </ul>
           </div>
-          
+
           <div>
-            <h4 className="font-semibold mb-4">상태</h4>
+            <h4 className="mb-4 font-semibold">상태</h4>
             <div className="space-y-2 text-sm">
               <div className="flex items-center space-x-2">
-                <div className="h-2 w-2 bg-green-500 rounded-full"></div>
+                <div className="h-2 w-2 rounded-full bg-green-500"></div>
                 <span className="text-gray-400">시스템 정상</span>
               </div>
               <div className="flex items-center space-x-2">
@@ -53,8 +53,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+
+        <div className="mt-8 border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
           <p>&copy; 2025 KG Standard User Web. All rights reserved.</p>
         </div>
       </div>

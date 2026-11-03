@@ -11,7 +11,8 @@ export const replaceUnassigned = (body: any, seen = new WeakSet()): any => {
     return body === _UNASSIGNED_ ? "" : body
   }
 
-  if (seen.has(body)) {  // 순환 참조 방지
+  if (seen.has(body)) {
+    // 순환 참조 방지
     return body
   } else {
     seen.add(body)

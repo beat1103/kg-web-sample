@@ -10,27 +10,29 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  // Next.js 기본 규칙
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+
+  // 무시할 경로
   {
     ignores: [
-      "app/(pages)/template/**",
+      ".next/**", // 빌드 산출물 제외
+      "next-env.d.ts", // 빌드 산출물 제외
+      "node_modules/**", // 패키지 제외
+      "app/(pages)/template/**", // 기존 무시 경로
       "components/template/**",
     ],
-    ...compat.extends("next/core-web-vitals", "next/typescript"),
   },
+
+  // 커스텀 규칙
   {
     rules: {
       "@typescript-eslint/no-unused-vars": [
         "warn",
         { argsIgnorePattern: "^_" },
-      ], // 사용하지 않는 변수 경고
-      "@typescript-eslint/no-explicit-any": "off",                  // any 타입 사용 허용
-      'react/no-unescaped-entities': 'off',                         // html unescape 문자 사용 허용
-      // 'react-hooks/exhaustive-deps': 'warn',                     // useEffect 의존성 배열 경고
-      // '@next/next/no-img-element': 'warn',                       // img 태그 사용 경고
-      // '@typescript-eslint/no-unused-vars-experimental': 'warn',  // 실험적 변수 사용 경고
-      // '@typescript-eslint/no-unused-vars-ignore': 'warn',        // 무시된 변수 사용 경고
-      // '@typescript-eslint/no-unused-vars-jsdoc': 'warn',         // JSDoc에서 사용하지 않는 변수 경고
+      ],
+      "@typescript-eslint/no-explicit-any": "off",
+      "react/no-unescaped-entities": "off",
     },
   },
 ];

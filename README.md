@@ -152,7 +152,7 @@ npm run dev
 
 #### 5️⃣ 브라우저에서 확인
 ```
-🌐 http://localhost:3001
+🌐 http://localhost:3000
 ```
 
 ---
@@ -173,6 +173,9 @@ pnpm start
 
 # 린트 검사
 pnpm lint
+
+# 디버깅 린트
+pnpm lint:debug
 
 # 에러만 표시하는 린트
 pnpm lint:errors-only
@@ -237,11 +240,11 @@ docker run -d -p 3001:3000 --restart=always --name kg-standard-user-web kg-stand
 
 ### 🔧 환경별 설정
 
-| 환경 | 프론트엔드 | API 서버 | 데이터베이스 |
-|------|------------|----------|--------------|
-| **로컬** | `localhost:3001` | `localhost:8081` | 로컬 DB |
+| 환경 | 프론트엔드                        | API 서버 | 데이터베이스 |
+|------|------------------------------|----------|--------------|
+| **로컬** | `localhost:3000`             | `localhost:8081` | 로컬 DB |
 | **개발** | `dev-frontend.firzzle.co.kr` | `dev-st-api.firzzle.co.kr:8443` | 개발 DB |
-| **운영** | `st-frontend.firzzle.co.kr` | `st-api.firzzle.co.kr` | 운영 DB |
+| **운영** | `st-frontend.firzzle.co.kr`  | `st-api.firzzle.co.kr` | 운영 DB |
 
 ### 🔐 인증 시스템
 
@@ -384,4 +387,4 @@ Made with by KG Team
 
 [⬆️ 맨 위로](#-kg-standard-user-web)
 
-</div># kg-web-sample
+</div>
